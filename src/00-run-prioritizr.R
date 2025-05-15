@@ -47,11 +47,17 @@ for (i in 1:length(budgets))
     add_min_shortfall_objective(budget = budgets[i]) %>%
     add_gurobi_solver()
   
-  portfolio[[i]] <- solve(prob, force = TRUE)
+  solution <- solve(prob, force = TRUE)
+  
+  if (i == 1)
+  {
+    priority <- solution
+  }else{
+    priority <- rast(list(solution, priority)) |>
+      sum()
+  }
 }
 
-portfolio_rast <- rast(portfolio)
-
-priority <- sum(portfolio_rast)
-
 ####### Output ####################################
+
+writeRaster(priority, filename = "output/diver_priority.tif")
