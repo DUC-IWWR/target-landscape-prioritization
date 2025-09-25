@@ -47,3 +47,20 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+data/raw/rasters/all.tif
+data/raw/rasters/bwte.tif
+data/raw/rasters/canv.tif
+data/raw/rasters/dabblers.tif
+data/raw/rasters/divers.tif
+data/raw/rasters/gadw.tif
+data/raw/rasters/mall.tif
+data/raw/rasters/nopi.tif
+data/raw/rasters/nsho.tif
+data/raw/rasters/redh.tif
+data/raw/tl-2025/TL_0.74.cpg
+data/raw/tl-2025/TL_0.74.dbf
+data/raw/tl-2025/TL_0.74.prj
+data/raw/tl-2025/TL_0.74.sbn
+data/raw/tl-2025/TL_0.74.sbx
+data/raw/tl-2025/TL_0.74.shp
+data/raw/tl-2025/TL_0.74.shx
