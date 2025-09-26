@@ -19,6 +19,8 @@ tl <- terra::vect("../data/raw/tl-2025/TL_0.74.shp")
 species_list <- c("BWTE","GADW", "MALL", "NOPI",
             "NSHO", "CANV", "REDH")
 
+range01 <- function(x){(x-min(x))/(max(x)-min(x))}
+
 ui <- semanticPage(
   
   sidebar_layout(
@@ -58,14 +60,23 @@ server <- function(input, output, session) {
 
     tl_pops <- terra::extract(density_plot, tl)
     tl_pops$ID <- as.integer(tl_pops$ID)
-    tl_sums <- aggregate(tl_pops[,2] ~ tl_pops[,1], FUN = "sum")
+    tl_sums <- aggregate(tl_pops[,2] ~ tl_pops[,1], FUN = "mean")
     names(tl_sums) <- c("id", "density")
-    tl_sums$prop <- tl_sums$density / sum(tl_sums$density)
+    tl_sums$density01 <- range01(tl_sums$density)
+    #tl_sums$prop <- tl_sums$density / sum(tl_sums$density)
     to_plot <- merge(tl, tl_sums, by = "id")
 
-    ggplot2::ggplot() +
-      tidyterra::geom_spatvector(data = to_plot, aes(fill = prop)) +
+    map <- ggplot2::ggplot() +
+      tidyterra::geom_spatvector(data = to_plot, aes(fill = (density01))) +
+      ggplot2::labs(fill = "Density Index") +
       NULL
+
+    hist <- ggplot2::ggplot(data = to_plot) +
+      ggplot2::geom_histogram(aes(density01)) +
+      xlab("Density Index") +
+      NULL
+
+    ggpubr::ggarrange(map, hist, nrow = 1)
   })
 
 }
