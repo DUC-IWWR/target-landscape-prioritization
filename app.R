@@ -6,15 +6,15 @@ library(terra)
 library(shiny)
 theme_set(theme_pubclean())
 
-bwte <- terra::rast("../data/raw/rasters/bwte.tif")
-canv <- terra::rast("../data/raw/rasters/canv.tif")
-gadw <- terra::rast("../data/raw/rasters/gadw.tif")
-mall <- terra::rast("../data/raw/rasters/mall.tif")
-nopi <- terra::rast("../data/raw/rasters/nopi.tif")
-nsho <- terra::rast("../data/raw/rasters/nsho.tif")
-redh <- terra::rast("../data/raw/rasters/redh.tif")
+bwte <- terra::rast("data/raw/rasters/bwte.tif")
+canv <- terra::rast("data/raw/rasters/canv.tif")
+gadw <- terra::rast("data/raw/rasters/gadw.tif")
+mall <- terra::rast("data/raw/rasters/mall.tif")
+nopi <- terra::rast("data/raw/rasters/nopi.tif")
+nsho <- terra::rast("data/raw/rasters/nsho.tif")
+redh <- terra::rast("data/raw/rasters/redh.tif")
 
-tl <- terra::vect("../data/raw/tl-2025/TL_0.74.shp")
+tl <- terra::vect("data/raw/tl-2025/TL_0.74.shp")
 
 species_list <- c("BWTE","GADW", "MALL", "NOPI",
             "NSHO", "CANV", "REDH")
